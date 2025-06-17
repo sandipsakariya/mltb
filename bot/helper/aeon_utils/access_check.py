@@ -1,4 +1,3 @@
-from re import IGNORECASE, escape, search
 from time import time
 from uuid import uuid4
 
@@ -12,7 +11,6 @@ from bot.core.aeon_client import TgClient
 from bot.core.config_manager import Config
 from bot.helper.aeon_utils.shorteners import short
 from bot.helper.ext_utils.db_handler import database
-from bot.helper.ext_utils.help_messages import nsfw_keywords
 from bot.helper.ext_utils.status_utils import get_readable_time
 from bot.helper.telegram_helper.button_build import ButtonMaker
 
@@ -133,7 +131,6 @@ def is_nsfw(text):
     Returns:
         True if NSFW keywords are found, False otherwise.
     """
-    pass
 
 
 def is_nsfw_data(data):
@@ -146,7 +143,6 @@ def is_nsfw_data(data):
     Returns:
         True if NSFW content is found, False otherwise.
     """
-    pass
 
 
 async def nsfw_precheck(message):
@@ -158,7 +154,6 @@ async def nsfw_precheck(message):
     Returns:
         True if NSFW content is detected, False otherwise.
     """
-    pass
 
 
 async def check_is_paid(chat, uid):
