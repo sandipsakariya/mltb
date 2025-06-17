@@ -133,12 +133,7 @@ def is_nsfw(text):
     Returns:
         True if NSFW keywords are found, False otherwise.
     """
-    pattern = (
-        r"(?:^|\W|_)(?:"
-        + "|".join(escape(keyword) for keyword in nsfw_keywords)
-        + r")(?:$|\W|_)"
-    )
-    return bool(search(pattern, text, flags=IGNORECASE))
+    pass
 
 
 def is_nsfw_data(data):
@@ -151,16 +146,7 @@ def is_nsfw_data(data):
     Returns:
         True if NSFW content is found, False otherwise.
     """
-    if isinstance(data, list):
-        return any(
-            is_nsfw(item.get("name", ""))
-            if isinstance(item, dict)
-            else is_nsfw(item)
-            for item in data
-        )
-    if isinstance(data, dict):
-        return any(is_nsfw(item["filename"]) for item in data.get("contents", []))
-    return False
+    pass
 
 
 async def nsfw_precheck(message):
@@ -172,24 +158,7 @@ async def nsfw_precheck(message):
     Returns:
         True if NSFW content is detected, False otherwise.
     """
-    if is_nsfw(message.text):
-        return True
-
-    reply_to = message.reply_to_message
-    if not reply_to:
-        return False
-
-    for attr in ["document", "video"]:
-        if hasattr(reply_to, attr) and getattr(reply_to, attr):
-            file_name = getattr(reply_to, attr).file_name
-            if file_name and is_nsfw(file_name):
-                return True
-
-    return any(
-        is_nsfw(getattr(reply_to, attr))
-        for attr in ["caption", "text"]
-        if hasattr(reply_to, attr) and getattr(reply_to, attr)
-    )
+    pass
 
 
 async def check_is_paid(chat, uid):
